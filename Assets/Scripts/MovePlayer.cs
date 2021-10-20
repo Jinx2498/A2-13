@@ -5,6 +5,7 @@ public class MovePlayer : MonoBehaviour
     public Rigidbody rb;
     public float force = 50f;
     public float jumpForce = 200f;
+    public int jumpCount = 2;
 
     void FixedUpdate()
     {
@@ -15,7 +16,7 @@ public class MovePlayer : MonoBehaviour
 
         if (Input.GetKey("a"))
         {
-            rb.AddForce(force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            rb.AddForce(-force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
 
         if (Input.GetKey("s"))
@@ -25,12 +26,20 @@ public class MovePlayer : MonoBehaviour
 
         if (Input.GetKey("d"))
         {
-            rb.AddForce(-force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            rb.AddForce(force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKey("space"))
+        if (Input.GetKeyDown("space"))
         {
-            rb.AddForce(0, jumpForce * Time.deltaTime, 0, ForceMode.VelocityChange);
+            if(jumpCount > 0)
+            {
+                rb.AddForce(0, jumpForce * Time.deltaTime, 0, ForceMode.VelocityChange);
+            }
+        }
+
+        if(rb.velocity.y == 0)
+        {
+            jumpCount = 2;
         }
     }
 
