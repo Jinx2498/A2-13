@@ -3,7 +3,6 @@ public class MovePlayer : MonoBehaviour
 {
     public Rigidbody rb;
     public float force = 50f;
-    public float jumpForce = 200f;
     public int jumpCount = 2;
 
     void FixedUpdate()
@@ -32,7 +31,8 @@ public class MovePlayer : MonoBehaviour
         {
             if(jumpCount > 0)
             {
-                rb.AddForce(0, jumpForce * Time.deltaTime, 0, ForceMode.VelocityChange);
+                rb.velocity = new Vector3(rb.velocity.x, 5.2f, rb.velocity.z);
+                --jumpCount;
             }
         }
 
@@ -41,5 +41,4 @@ public class MovePlayer : MonoBehaviour
             jumpCount = 2;
         }
     }
-
 }
