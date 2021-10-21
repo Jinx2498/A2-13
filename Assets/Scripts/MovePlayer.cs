@@ -31,7 +31,7 @@ public class MovePlayer : MonoBehaviour
 
         IEnumerator Wait()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             jumpCount = 2;
         }
     }
